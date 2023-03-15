@@ -3,9 +3,15 @@ import Task from "./Task";
 const Tasks = ({ tasks, onDelete, onToggle }) => {
   return (
     <div className="list">
-      {tasks.map((task, index) => (
-        <Task key={index} task={task} onDelete={onDelete} onToggle={onToggle} />
-      ))}
+      {tasks &&
+        tasks.map((task, index) => (
+          <Task
+            key={index}
+            task={task}
+            onDelete={onDelete}
+            onToggle={onToggle}
+          />
+        ))}
     </div>
   );
 };

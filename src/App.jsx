@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import TaskStatus from "./components/TaskStatus";
 import "./App.css";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
@@ -14,11 +15,13 @@ function App() {
     };
     getTasks();
   }, []);
+
   const fetchTasks = async () => {
     const res = await fetch("http://localhost:5000/tasks");
     const data = await res.json();
     return data;
   };
+
   //add task
   const addTask = async (task) => {
     const res = await fetch("http://localhost:5000/tasks", {
@@ -53,13 +56,24 @@ function App() {
 
   return (
     <div className="container">
-      <Header onAdd={addTask} />
-      {/* if task is < 0 then show text "nothing" */}
-      {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
-      ) : (
-        "nothin"
-      )}
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header onAdd={addTask} />
+                <Tasks
+                  tasks={tasks}
+                  onDelete={deleteTask}
+                  onToggle={toggleReminder}
+                />
+              </>
+            }
+          />
+          <Route path="/task/:id" element={<TaskStatus />}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
