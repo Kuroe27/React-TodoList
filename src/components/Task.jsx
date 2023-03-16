@@ -4,19 +4,31 @@ import { useNavigate } from "react-router-dom";
 const Task = ({ task, onDelete, onToggle }) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleTaskClick = () => {
     navigate(`/task/${task.id}`);
+  };
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation();
+    onDelete(task.id);
+  };
+
+  const handleToggleClick = (e) => {
+    e.stopPropagation();
+    onToggle(task.id);
   };
 
   return (
     <div
       className={`task ${task.reminder ? "remider" : ""}`}
-      onDoubleClick={() => onToggle(task.id)}
-      onClick={handleClick}
+      onClick={handleTaskClick}
     >
       <p>
-        {task.text}
-        <FaTimes onClick={() => onDelete(task.id)} />{" "}
+        <>
+          <input type="checkbox" onClick={handleToggleClick} />
+          {task.text}
+        </>
+        <FaTimes onClick={handleDeleteClick} />{" "}
       </p>
     </div>
   );
