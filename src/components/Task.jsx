@@ -24,10 +24,18 @@ const Task = ({ task, onDelete, onToggle }) => {
       onClick={handleTaskClick}
     >
       <p>
-        <>
-          <input type="checkbox" onClick={handleToggleClick} />
+        <div
+          className="check"
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <input
+            type="checkbox"
+            onClick={handleToggleClick}
+            checked={task.reminder}
+            style={{ marginRight: "1rem", width: "1.2rem" }}
+          />
           {task.text}
-        </>
+        </div>
         <FaTimes onClick={handleDeleteClick} />{" "}
       </p>
     </div>
