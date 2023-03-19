@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Tasks from "./Tasks";
-const TaskStatus = () => {
+const TaskStatus = (onToggle) => {
   const [task, setTask] = useState({});
   const navigate = useNavigate();
   const { id } = useParams();
@@ -19,7 +19,11 @@ const TaskStatus = () => {
   const handleBackClick = () => {
     navigate(-1);
   };
-
+  const handleToggleClick = (e) => {
+    e.stopPropagation();
+    setChecked(!checked);
+    onToggle(task.id);
+  };
   return (
     <>
       <Header />

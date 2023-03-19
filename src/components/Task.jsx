@@ -23,21 +23,32 @@ const Task = ({ task, onDelete, onToggle }) => {
       className={`task ${task.reminder ? "remider" : ""}`}
       onClick={handleTaskClick}
     >
-      <p>
+      <div
+        className="postText"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <div
           className="check"
-          style={{ display: "flex", alignItems: "center" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
         >
           <input
             type="checkbox"
-            onClick={handleToggleClick}
+            onChange={() => onToggle(task.id)}
             checked={task.reminder}
             style={{ marginRight: "1rem", width: "1.2rem" }}
           />
+
           {task.text}
         </div>
         <FaTimes onClick={handleDeleteClick} />{" "}
-      </p>
+      </div>
     </div>
   );
 };
