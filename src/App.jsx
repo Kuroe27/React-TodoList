@@ -7,7 +7,7 @@ import Tasks from "./components/Tasks";
 
 function App() {
   const [tasks, setTask] = useState([]);
-
+  const [searchTasks, setSearchTasks] = useState("");
   useEffect(() => {
     const getTasks = async () => {
       const taskFromServer = await fetchTasks();
@@ -53,6 +53,9 @@ function App() {
     setTask(tasks.map((task) => (task.id === id ? data : task)));
   };
 
+  const filteredTasks = tasks.filter((task) =>
+    task.text.toLowerCase().includes(searchTasks.toLowerCase())
+  );
   return (
     <div className="container">
       <Router>
@@ -61,9 +64,13 @@ function App() {
             path="/"
             element={
               <>
-                <Header onAdd={addTask} />
+                <Header
+                  onAdd={addTask}
+                  searchText={searchTasks}
+                  onSearch={setSearchTasks}
+                />
                 <Tasks
-                  tasks={tasks}
+                  tasks={filteredTasks}
                   onDelete={deleteTask}
                   onToggle={toggleReminder}
                 />

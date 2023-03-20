@@ -2,15 +2,18 @@
   "tasks": [
     {
       "text": "",
-      "id": 1
+      "id": 1,
+      "reminder": true
     },
     {
       "text": "",
-      "id": 2
+      "id": 2,
+      "reminder": true
     },
     {
       "text": "",
-      "id": 3
+      "id": 3,
+      "reminder": true
     },
     {
       "text": "",
@@ -22,19 +25,27 @@
     },
     {
       "text": "",
-      "id": 6
+      "id": 6,
+      "reminder": true
     },
     {
       "text": "",
-      "id": 7
+      "id": 7,
+      "reminder": true
     },
     {
       "text": "",
-      "id": 8
+      "id": 8,
+      "reminder": true
     },
     {
       "text": "",
       "id": 9
+    },
+    {
+      "text": "1",
+      "id": 10,
+      "reminder": false
     }
   ]
 }

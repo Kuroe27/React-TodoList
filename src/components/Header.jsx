@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const Header = ({ onAdd }) => {
+const Header = ({ onAdd, onSearch }) => {
   const location = useLocation();
   const [text, setText] = useState("");
   const [showAddTask, setTask] = useState(false);
   const onClick = (e) => {
     e.preventDefault();
     onAdd({ text });
+  };
+  const onSearchChange = (e) => {
+    const searchText = e.target.value.toLowerCase();
+    onSearch(searchText);
   };
   return (
     <div className="header">
@@ -21,6 +25,7 @@ const Header = ({ onAdd }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
+      <input type="text" placeholder="Search..." onChange={onSearchChange} />
     </div>
   );
 };
